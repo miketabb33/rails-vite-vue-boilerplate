@@ -9,13 +9,15 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   
-  scope '/api' do
+  namespace :api do
     get "/joy", to: 'test#index'
 
     get '*path', to: proc { |_env|
       [500, { 'Content-Type' => 'text/plain' }, ['Internal Server Error']]
     }
   end
+
+  root 'static#index'
   
   get '*path', to: 'static#index', constraints: ->(req) { !req.xhr? && req.format.html? }
 end
