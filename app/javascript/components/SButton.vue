@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed } from 'vue'
 
 type ButtonProps = {
   color?: 'gray' | 'blue'
@@ -16,9 +16,4 @@ const emit = defineEmits(['click'])
 const buttonClasses = computed(() => {
   return color === 'blue' ? 'bg-blue-100' : 'bg-gray'
 })
-
 </script>
-
-<style scoped>
-
-</style>
