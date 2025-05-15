@@ -2,7 +2,10 @@
   "private": true,
   "type": "module",
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.6",
     "@vitejs/plugin-vue": "^5.2.4",
+    "autoprefixer": "^10.4.21",
+    "tailwindcss": "^4.1.6",
     "typescript": "^5.8.3",
     "vite": "^5.4.19",
     "vite-plugin-ruby": "^5.1.1",

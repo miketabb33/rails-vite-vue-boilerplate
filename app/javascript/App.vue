@@ -5,13 +5,13 @@
     {{ b }}
     sup 
   </div>
-  <Button @click="increment">Click Here</Button>
+  <SButton @click="increment">Click Here</SButton>
 
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import Button from './components/Button.vue';
+import SButton from './components/SButton.vue';
 
 type Bob = "bob" | "not bob"
 
