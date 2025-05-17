@@ -127,7 +127,7 @@ jobs:
 
       - name: Run E2E Tests
         id: e2e_run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           start: bundle exec rails s -e test -p 5017 -d
           wait-on: 'http://localhost:5017'
