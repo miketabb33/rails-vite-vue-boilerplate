@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gem "rails", "~> 8.0.2"
 
-gem 'vite_rails'
+gem "vite_rails"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -51,6 +51,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "rspec-rails"
 end
 
 group :development do
