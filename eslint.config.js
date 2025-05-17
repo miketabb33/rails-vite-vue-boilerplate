@@ -3,6 +3,7 @@ import prettierConfig from 'eslint-config-prettier'
 import vuePlugin from 'eslint-plugin-vue'
 import vueParser from 'vue-eslint-parser'
 import tseslint from 'typescript-eslint'
+import vitest from 'eslint-plugin-vitest'
 
 export default [
   js.configs.recommended,
@@ -50,6 +51,18 @@ export default [
       'no-dupe-keys': 'error',
       'vue/no-dupe-keys': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
+    },
+  },
+  {
+    files: ['app/javascript/**/*.test.{js,ts}', 'app/javascript/**/*.spec.{js,ts}'],
+    plugins: {
+      vitest,
+    },
+    languageOptions: {
+      globals: vitest.environments.globals,
+    },
+    rules: {
+      ...vitest.configs.recommended.rules,
     },
   },
 ]

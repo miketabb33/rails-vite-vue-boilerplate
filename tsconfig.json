@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["vitest"],
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -14,5 +15,10 @@
       "@/*": ["app/javascript/*"]
     }
   },
-  "include": ["app/javascript/**/*.ts", "app/javascript/**/*.d.ts", "app/javascript/**/*.tsx", "app/javascript/**/*.vue"]
+  "include": [
+    "app/javascript/**/*.ts",
+    "app/javascript/**/*.d.ts",
+    "app/javascript/**/*.tsx",
+    "app/javascript/**/*.vue"
+  ]
 }
