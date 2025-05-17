@@ -3,6 +3,8 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
+    "cypress": "cypress run",
+    "cypress:open": "cypress open",
     "format": "prettier --write \"app/javascript/**/*.{ts,js,vue,json,css,scss}\"",
     "lint": "eslint \"app/javascript/**/*.{ts,js,vue}\" --fix",
     "lint:check": "eslint \"app/javascript/**/*.{ts,js,vue}\""
@@ -15,6 +17,8 @@
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.21",
+    "cypress": "^14.3.3",
+    "cypress-on-rails": "^0.1.0",
     "eslint": "^9.27.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.0",

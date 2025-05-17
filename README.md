@@ -9,11 +9,18 @@ In different terminals:
 
 ## Testing
 
-#### Backend unit tests
+### Backend Unit Tests
 
 - `bundle exec rspec`
 - `bundle exec rspec {relative file path}`
 
-#### Frontend unit tests
+### Frontend Unit Tests
 
 - `npm test`
+
+### End To End Tests
+
+In different terminal's
+
+- `bin/cypress-server`
+- `npm run cypress:open` or `npm run cypress`
