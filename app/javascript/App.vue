@@ -14,8 +14,6 @@ import SButton from './components/SButton.vue'
 
 type Bob = 'bob' | 'not bob'
 
-const r: any = 'sweet'
-
 const count = ref(0)
 
 const b: Bob = 'not bob'

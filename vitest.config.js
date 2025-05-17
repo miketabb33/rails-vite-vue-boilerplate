@@ -6,5 +6,6 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
+    include: ['app/javascript/tests/**/*.{test,spec}.{js,ts,vue}'],
   },
 })

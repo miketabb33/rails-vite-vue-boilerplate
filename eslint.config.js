@@ -23,6 +23,10 @@ export default [
         sourceType: 'module',
         project: './tsconfig.json',
       },
+      globals: {
+        window: 'readonly',
+        document: 'readonly',
+      },
     },
     rules: {
       'vue/require-default-prop': 'off',
@@ -54,7 +58,7 @@ export default [
     },
   },
   {
-    files: ['app/javascript/**/*.test.{js,ts}', 'app/javascript/**/*.spec.{js,ts}'],
+    files: ['**/*.test.{js,ts}', '**/*.spec.{js,ts}'],
     plugins: {
       vitest,
     },

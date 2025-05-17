@@ -3,7 +3,7 @@ name: CI
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   scan_ruby:
@@ -50,12 +50,36 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Lint code for consistent style
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '24'
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      - name: Lint Ruby
         run: bin/rubocop -f github
+
+      - name: Lint JavaScript
+        run: npm run lint:check
 
   test:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: app_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     # services:
     #  redis:
     #    image: redis
@@ -75,16 +99,46 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Run tests
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '24'
+
+      - name: Install Node.js dependencies
+        run: npm install
+
+      - name: Set up database
         env:
           RAILS_ENV: test
-          # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test test:system
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+        run: |
+          bin/rails db:create
+          bin/rails db:migrate
 
-      - name: Keep screenshots from failed system tests
-        uses: actions/upload-artifact@v4
-        if: failure()
+      - name: Run Backend Tests
+        env:
+          RAILS_ENV: test
+        run: bundle exec rspec
+
+      - name: Run Frontend Tests
+        run: npm test
+
+      - name: Run E2E Tests
+        id: e2e_run
+        uses: cypress-io/github-action@v5
         with:
-          name: screenshots
-          path: ${{ github.workspace }}/tmp/screenshots
-          if-no-files-found: ignore
+          start: bundle exec rails s -e test -p 5017 -d
+          wait-on: 'http://localhost:5017'
+          browser: chrome
+
+      - name: Upload artifacts (only if e2e fails)
+        if: ${{ failure() && steps.e2e_run.conclusion == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-artifacts
+          path: |
+            cypress/screenshots
+            cypress/videos
+          retention-days: 1

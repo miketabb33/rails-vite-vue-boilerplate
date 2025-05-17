@@ -1,7 +1,7 @@
 describe('Home Page', () => {
   it('loads successfully', () => {
     cy.visit('/')
-    cy.contains('Hello, man!')
+    cy.contains('bob')
   })
 
   // it('can use Rails DB setup', () => {

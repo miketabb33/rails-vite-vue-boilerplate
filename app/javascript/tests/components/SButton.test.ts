@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
+import { expect, it } from 'vitest'
 
-it('it is', () => {
+it('should is', () => {
   expect(true).toBe(true)
 })
