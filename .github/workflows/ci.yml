@@ -135,7 +135,7 @@ jobs:
 
       - name: Upload artifacts (only if e2e fails)
         if: ${{ failure() && steps.e2e_run.conclusion == 'failure' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: cypress-artifacts
           path: |
